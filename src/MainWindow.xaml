@@ -1,0 +1,125 @@
+﻿<Window x:Class="ProjektZaliczeniowy.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjektZaliczeniowy"
+        mc:Ignorable="d"
+        Title="Kalkulator kalorii" Height="630" Width="500"
+        WindowStyle="None"
+        ResizeMode="NoResize" MouseDown="Window_MouseDown">
+    <Grid Background="#393932">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30px"/>
+            <RowDefinition Height="300px"/>
+            <RowDefinition Height="300px"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="450"/>
+                <ColumnDefinition Width="50"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Margin="1" Grid.Column="0">
+                <TextBlock FontSize="16px" HorizontalAlignment="Center" Foreground="GhostWhite" FontFamily="Yu Gothic UI Semibold"><Run Text="Kalkulator zapotrzebowania kalorycznego"/></TextBlock>
+            </StackPanel>
+            <StackPanel Margin="1" Grid.Column="1">
+                <Button x:Name="CloseButton" Click="CloseButton_Click" Content="X" HorizontalAlignment="Right" Width="50" Height="30px"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="250"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Margin="15" Grid.Column="0">
+                <StackPanel Margin="0, 0, 0, 30">
+                    <TextBlock FontSize="16px" HorizontalAlignment="Left" Foreground="WhiteSmoke" FontFamily="Yu Gothic UI Semibold">Płeć</TextBlock>
+                    <ComboBox Height="20px" Width="220px">
+                        <ComboBoxItem x:Name="Female">
+                            Kobieta
+                        </ComboBoxItem>
+                        <ComboBoxItem IsSelected="True" x:Name="Male">
+                            Mężczyzna
+                        </ComboBoxItem>
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel Margin="0, 0, 0, 30">
+                    <TextBlock FontSize="16px" Foreground="WhiteSmoke" FontFamily="Yu Gothic UI Semibold">Wiek</TextBlock>
+                    <TextBox x:Name="Age" HorizontalAlignment="Left" Width="220px" Height="20px"></TextBox>
+                </StackPanel>
+                <StackPanel Margin="0, 0, 0, 30">
+                    <TextBlock FontSize="16px" Foreground="WhiteSmoke" FontFamily="Yu Gothic UI Semibold">Waga</TextBlock>
+                    <TextBox x:Name="Weight" HorizontalAlignment="Left" Width="220px" Height="20px"></TextBox>
+                </StackPanel>
+                <StackPanel Margin="0, 0, 0, 30">
+                    <TextBlock FontSize="16px" Foreground="WhiteSmoke" FontFamily="Yu Gothic UI Semibold">Wzrost</TextBlock>
+                    <TextBox x:Name="Height" HorizontalAlignment="Left" Width="220px" Height="20px"></TextBox>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Margin="15" Grid.Column="1">
+                <StackPanel Margin="0, 0, 0, 30">
+                    <TextBlock FontSize="16px" Foreground="WhiteSmoke" FontFamily="Yu Gothic UI Semibold">Poziom aktywności</TextBlock>
+                    <ComboBox Height="20px" Width="220px">
+                        <ComboBoxItem x:Name="Activity1" IsSelected="True">
+                            Leżący lub siedzący tryb życia, brak aktywności
+                        </ComboBoxItem>
+                        <ComboBoxItem x:Name="Activity2">
+                            Praca siedząca, aktywność fizyczna na niskim poziomie
+                        </ComboBoxItem>
+                        <ComboBoxItem x:Name="Activity3">
+                            Praca nie fizyczna, trening 2 razy w tygodniu
+                        </ComboBoxItem>
+                        <ComboBoxItem x:Name="Activity4">
+                            Lekka praca fizyczna, trening 3-4 razy w tygodniu
+                        </ComboBoxItem>
+                        <ComboBoxItem x:Name="Activity5">
+                            Praca fizyczna, trening 5 razy w tygodniu
+                        </ComboBoxItem>
+                        <ComboBoxItem x:Name="Activity6">
+                            Ciężka praca fizyczna, codzienny trening
+                        </ComboBoxItem>
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel Margin="0, 0, 0, 30">
+                    <TextBlock FontSize="16px" Foreground="WhiteSmoke" FontFamily="Yu Gothic UI Semibold">Cel</TextBlock>
+                    <ComboBox Height="20px" Width="220px">
+                        <ComboBoxItem x:Name="WeightGain" IsSelected="True">
+                            Przybranie na wadze
+                        </ComboBoxItem>
+                        <ComboBoxItem x:Name="WeightLose">
+                            Redukcja
+                        </ComboBoxItem>
+                        <ComboBoxItem x:Name="WeightKeep">
+                            Utrzymanie wagi
+                        </ComboBoxItem>
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel Margin="0, 3, 0, 0">
+                    <Button x:Name="CalculateButton" Margin="0, 5, 0, 5" Height="30px" Click="CalculateButton_Click">Oblicz zapotrzebowanie</Button>
+                    <Button x:Name="SaveButton" Margin="0, 5, 0, 5" Height="30px" Click="SaveButton_Click">Zapisz ustawienia</Button>
+                    <Button x:Name="ReadLastResultButton" Margin="0, 5, 0, 5" Height="30px" Click="ReadLastResultButton_Click">Wczytaj zapisane ustawienia</Button>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="2">
+            <StackPanel Margin="15, 0, 0, 0">
+                <StackPanel Margin="0, 10, 0, 10">
+                    <TextBlock FontSize="20px" Foreground="WhiteSmoke" FontFamily="Yu Gothic UI Semibold">Zapotrzebowanie kaloryczne:</TextBlock>
+                    <TextBlock x:Name="CaloriesResult" FontSize="15px" Foreground="WhiteSmoke" FontFamily="Yu Gothic UI Semibold"></TextBlock>
+                </StackPanel>
+                <StackPanel Margin="0, 10, 0, 10">
+                    <TextBlock FontSize="20px" Foreground="WhiteSmoke" FontFamily="Yu Gothic UI Semibold">Węglowodany:</TextBlock>
+                    <TextBlock x:Name="Carbohydrates" FontSize="15px" Foreground="WhiteSmoke" FontFamily="Yu Gothic UI Semibold"></TextBlock>
+                </StackPanel>
+                <StackPanel Margin="0, 10, 0, 10">
+                    <TextBlock FontSize="20px" Foreground="WhiteSmoke" FontFamily="Yu Gothic UI Semibold">Tłuszcze:</TextBlock>
+                    <TextBlock x:Name="Fats" FontSize="15px" Foreground="WhiteSmoke" FontFamily="Yu Gothic UI Semibold"></TextBlock>
+                </StackPanel>
+                <StackPanel Margin="0, 10, 0, 10">
+                    <TextBlock FontSize="20px" Foreground="WhiteSmoke" FontFamily="Yu Gothic UI Semibold">Białko:</TextBlock>
+                    <TextBlock x:Name="Protein" FontSize="15px" Foreground="WhiteSmoke" FontFamily="Yu Gothic UI Semibold"></TextBlock>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
